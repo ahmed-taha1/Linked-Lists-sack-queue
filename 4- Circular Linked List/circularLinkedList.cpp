@@ -1,4 +1,4 @@
-#include "doublyLinkedList.h"
+#include "circularLinkedList.h"
 
 template<typename T>
 Node<T>::Node(){
@@ -8,14 +8,14 @@ Node<T>::Node(){
 }
 
 template<typename T>
-doublyLinkedList<T>::doublyLinkedList(){
+circularLinkedList<T>::circularLinkedList(){
     size = 0;
     head = NULL;
     tail = NULL;
 }
 
 template<typename T>
-void doublyLinkedList<T>::insertAtHead(const T& val){
+void circularLinkedList<T>::insertAtHead(const T& val){
     Node<T>* temp = new Node<T>();
     temp -> value = val;
     if(head == NULL){
@@ -23,6 +23,10 @@ void doublyLinkedList<T>::insertAtHead(const T& val){
         size++;
         return;
     }
+    // curcial part
+    temp->prev = tail;
+    tail->next = temp;
+
     temp -> next = head;
     head -> prev = temp;
     head = temp;
@@ -31,7 +35,7 @@ void doublyLinkedList<T>::insertAtHead(const T& val){
 }
 
 template<typename T>
-void doublyLinkedList<T>::insertAtTail(const T& val){
+void circularLinkedList<T>::insertAtEnd(const T& val){
     Node<T>* temp = new Node<T>();
     temp -> value = val;
 
@@ -40,6 +44,10 @@ void doublyLinkedList<T>::insertAtTail(const T& val){
         size++;
         return;
     }
+
+    // curcial part
+    temp->next = head;
+    head->prev = temp;
 
     temp -> prev = tail;
     tail -> next = temp;
@@ -49,7 +57,7 @@ void doublyLinkedList<T>::insertAtTail(const T& val){
 }
 
 template<typename T>
-void doublyLinkedList<T>::insertAt(const int& ind, const T& val){
+void circularLinkedList<T>::insertAt(const int& ind, const T& val){
     if(ind >= size || ind < 0){
         cout << "out of range\n";
         return;
@@ -60,7 +68,7 @@ void doublyLinkedList<T>::insertAt(const int& ind, const T& val){
         return;
     }
     else if(ind == size - 1){
-        insertAtTail(val);
+        insertAtEnd(val);
         return;
     }
 
@@ -79,7 +87,7 @@ void doublyLinkedList<T>::insertAt(const int& ind, const T& val){
 }
 
 template<typename T>
-void doublyLinkedList<T>::insertAfter(const int& ind, const T& val){
+void circularLinkedList<T>::insertAfter(const int& ind, const T& val){
     if(ind >= size - 1 || ind < -1){
         cout << "out of range\n";
         return;
@@ -90,7 +98,7 @@ void doublyLinkedList<T>::insertAfter(const int& ind, const T& val){
         return;
     }
     else if(ind == size - 2){
-        insertAtTail(val);
+        insertAtEnd(val);
         return;
     }
 
@@ -109,20 +117,20 @@ void doublyLinkedList<T>::insertAfter(const int& ind, const T& val){
 }
 
 template<typename T>
-void doublyLinkedList<T>::removeAtHead(){
+void circularLinkedList<T>::removeAtHead(){
     if(head == NULL){
         return;
     }
 
     Node<T>* temp = head;
     head = head->next;
-    head->prev = NULL;
+    head->prev = tail;
     delete temp;
     size--;
 }
 
 template<typename T>
-void doublyLinkedList<T>::removeAtTail(){
+void circularLinkedList<T>::removeAtEnd(){
 
     if(tail == NULL){
         return;
@@ -130,14 +138,14 @@ void doublyLinkedList<T>::removeAtTail(){
 
     Node<T>* temp = tail;
     tail = tail->prev;
-    tail->next = NULL;
+    tail->next = head;
     delete temp;
     size--;
 
 }
 
 template<typename T>
-void doublyLinkedList<T>::removeAt(const int& ind){
+void circularLinkedList<T>::removeAt(const int& ind){
     if(ind >= size || ind < 0)
         return;
     
@@ -147,7 +155,7 @@ void doublyLinkedList<T>::removeAt(const int& ind){
     }
 
     if(ind == size - 1){
-        removeAtTail();
+        removeAtEnd();
         return;
     }
 
@@ -161,7 +169,7 @@ void doublyLinkedList<T>::removeAt(const int& ind){
 }
 
 template<typename T>
-T doublyLinkedList<T>::retriveAt(const int& ind) const{
+T circularLinkedList<T>::retriveAt(const int& ind) const{
     if(ind >= size || ind < 0)
         return T();
     Node<T>* curr = head;
@@ -171,7 +179,7 @@ T doublyLinkedList<T>::retriveAt(const int& ind) const{
 }
 
 template<typename T>
-void doublyLinkedList<T>::replaceAt(const int& ind, const T& val){
+void circularLinkedList<T>::replaceAt(const int& ind, const T& val){
     if(ind >= size || ind < 0)
         return;
     Node<T>* curr = head;
@@ -181,7 +189,7 @@ void doublyLinkedList<T>::replaceAt(const int& ind, const T& val){
 }
 
 template<typename T>
-bool doublyLinkedList<T>::isExist(const T& val) const{
+bool circularLinkedList<T>::isExist(const T& val) const{
     Node<T>* curr = head;
     while(curr != NULL){
         if(curr -> value == val)
@@ -192,7 +200,7 @@ bool doublyLinkedList<T>::isExist(const T& val) const{
 }
 
 template<typename T>
-bool doublyLinkedList<T>::isItemAtEqual(const int& ind, const T& val) const{
+bool circularLinkedList<T>::isItemAtEqual(const int& ind, const T& val) const{
     if(ind >= size || ind < 0)
         return false;
     Node<T>* curr = head;
@@ -202,7 +210,7 @@ bool doublyLinkedList<T>::isItemAtEqual(const int& ind, const T& val) const{
 }
 
 template<typename T>
-void doublyLinkedList<T>::swapp(const int& ind1, const int& ind2){
+void circularLinkedList<T>::swapp(const int& ind1, const int& ind2){
     if(ind1 >= size || ind1 < 0 || ind2 >= size || ind2 < 0)
         return;
     Node<T>* curr1 = head;
@@ -215,7 +223,7 @@ void doublyLinkedList<T>::swapp(const int& ind1, const int& ind2){
 }
 
 template<typename T>
-void doublyLinkedList<T>::reverse(){
+void circularLinkedList<T>::reverse(){
     Node<T>* curr1 = head;
     Node<T>* curr2 = tail;
     while (curr1 != curr2){
@@ -228,17 +236,17 @@ void doublyLinkedList<T>::reverse(){
 }
 
 template<typename T>
-bool doublyLinkedList<T>::isEmpty() const{
+bool circularLinkedList<T>::isEmpty() const{
     return size == 0;
 }
 
 template<typename T>
-int doublyLinkedList<T>::doubleLinkedListSize() const{
+int circularLinkedList<T>::circularLinkedListSize() const{
     return size;
 }
 
 template<typename T>
-void doublyLinkedList<T>::clear(){
+void circularLinkedList<T>::clear(){
     while(head != NULL){
         Node<T>* temp = head;
         head = head->next;
@@ -248,21 +256,11 @@ void doublyLinkedList<T>::clear(){
 }
 
 template<typename T>
-void doublyLinkedList<T>::forwardTraversal() const{
+void circularLinkedList<T>::print() const{
     Node<T>* Curr = head;
     while (Curr != NULL){
         cout << Curr -> value << " ";
         Curr = Curr->next;
-    }
-    cout << endl;
-}
-
-template<typename T>
-void doublyLinkedList<T>::backwordTraversal() const{
-    Node<T>* Curr = tail;
-    while (Curr != NULL){
-        cout << Curr -> value << " ";
-        Curr = Curr->prev;
     }
     cout << endl;
 }

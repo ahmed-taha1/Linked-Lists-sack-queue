@@ -35,14 +35,14 @@ void SingleLinkedList<T>::insertAtTail(const T& val){
 
 template<typename T>
 void SingleLinkedList<T>::insertAt(const T& val, const int& index){
-    if(index < 0 || index > size){
+    if(index < 0 || index >= size){
         cout << "Index out of range" << endl;
         return;
     }
     if(index == 0){
         insertAtHead(val);
     }
-    else if(index == size){
+    else if(index == size - 1){
         insertAtTail(val);
     }
     else{

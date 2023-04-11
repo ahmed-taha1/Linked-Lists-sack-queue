@@ -30,11 +30,11 @@ void ArrayBasedList<T>::insertAt(const T& val, const int& index){
         cout << "List is full" << endl;
         return;
     }
-    if(index < 0 || index > size){
+    if(index < 0 || index >= size){
         cout << "Index out of range" << endl;
         return;
     }
-    for(int i = size; i > index; i--){
+    for(int i = size; i > index - 1; i--){
         arr[i] = arr[i-1];
     }
     arr[index] = val;
