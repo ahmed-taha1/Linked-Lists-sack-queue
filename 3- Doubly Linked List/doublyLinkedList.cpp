@@ -15,6 +15,11 @@ doublyLinkedList<T>::doublyLinkedList(){
 }
 
 template<typename T>
+doublyLinkedList<T>::~doublyLinkedList(){
+    clear();
+}
+
+template<typename T>
 void doublyLinkedList<T>::insertAtHead(const T& val){
     Node<T>* temp = new Node<T>();
     temp -> value = val;

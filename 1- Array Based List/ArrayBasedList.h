@@ -10,6 +10,7 @@ class ArrayBasedList{
 
     public:
         ArrayBasedList();
+        ~ArrayBasedList();
         ArrayBasedList(const int& mx_size);
         void insert(const T& val);
         void insertAt(const T& val, const int& index);

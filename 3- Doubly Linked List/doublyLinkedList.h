@@ -17,6 +17,7 @@ protected:
     Node<T>* head;
 public:
     doublyLinkedList();
+    ~doublyLinkedList();
     void insertAtHead(const T& val);
     void insertAtTail(const T& val);
     void insertAt(const int& ind, const T& val);

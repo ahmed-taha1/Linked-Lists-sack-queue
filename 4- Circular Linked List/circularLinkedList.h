@@ -17,6 +17,7 @@ protected:
     Node<T>* head;
 public:
     circularLinkedList();
+    ~circularLinkedList();
     void insertAtHead(const T& val);
     void insertAtEnd(const T& val);
     void insertAt(const int& ind, const T& val);

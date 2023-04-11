@@ -15,6 +15,11 @@ circularLinkedList<T>::circularLinkedList(){
 }
 
 template<typename T>
+circularLinkedList<T>::~circularLinkedList(){
+    clear();
+}
+
+template<typename T>
 void circularLinkedList<T>::insertAtHead(const T& val){
     Node<T>* temp = new Node<T>();
     temp -> value = val;

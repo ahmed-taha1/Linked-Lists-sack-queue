@@ -7,12 +7,16 @@ ArrayBasedList<T>::ArrayBasedList(){
     arr = new T[max_size];
 }
 
-
 template<typename T>
 ArrayBasedList<T>::ArrayBasedList(const int& mx_size){
     max_size = mx_size;
     size = 0;
     arr = new T[max_size];
+}
+
+template<typename T>
+ArrayBasedList<T>::~ArrayBasedList(){
+    delete[] arr;
 }
 
 template<typename T>

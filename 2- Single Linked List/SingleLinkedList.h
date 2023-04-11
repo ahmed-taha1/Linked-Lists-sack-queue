@@ -13,11 +13,12 @@ struct node{
 
 template<typename T>
 class SingleLinkedList{
-    private:
+    protected:
         node<T>* head;
         int size;
     public:
         SingleLinkedList();
+        ~SingleLinkedList();
         void insertAtHead(const T& val);
         void insertAtTail(const T& val);
         void insertAt(const T& val, const int& index);

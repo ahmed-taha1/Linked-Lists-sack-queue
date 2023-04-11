@@ -7,6 +7,11 @@ SingleLinkedList<T>::SingleLinkedList(){
 }
 
 template<typename T>
+SingleLinkedList<T>::~SingleLinkedList(){
+    clear();
+}
+
+template<typename T>
 void SingleLinkedList<T>::insertAtHead(const T& val){
     node<T>* temp = new node<T>;
     temp->val = val;
@@ -170,6 +175,16 @@ void SingleLinkedList<T>::swapp(const int& index1, const int& index2){
     }
 
     swap(temp1->val, temp2->val);
+}
+
+template<typename T>
+bool SingleLinkedList<T>::isEmpty() const{
+    return head == nullptr;
+}
+
+template<typename T>
+int SingleLinkedList<T>::linkedListSize() const{
+    return size;
 }
 
 template<typename T>
