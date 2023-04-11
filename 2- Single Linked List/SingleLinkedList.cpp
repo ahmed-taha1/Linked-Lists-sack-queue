@@ -8,7 +8,7 @@ SingleLinkedList<T>::SingleLinkedList(){
 
 template<typename T>
 void SingleLinkedList<T>::insertAtHead(const T& val){
-    node* temp = new node;
+    node<T>* temp = new node<T>;
     temp->val = val;
     temp->next = head;
     head = temp;
@@ -17,14 +17,14 @@ void SingleLinkedList<T>::insertAtHead(const T& val){
 
 template<typename T>
 void SingleLinkedList<T>::insertAtTail(const T& val){
-    node* temp = new node;
+    node<T>* temp = new node<T>;
     temp->val = val;
     temp->next = nullptr;
     if(head == nullptr){
         head = temp;
     }
     else{
-        node* temp2 = head;
+        node<T>* temp2 = head;
         while(temp2->next != nullptr){
             temp2 = temp2->next;
         }
@@ -46,9 +46,9 @@ void SingleLinkedList<T>::insertAt(const T& val, const int& index){
         insertAtTail(val);
     }
     else{
-        node* temp = new node;
+        node<T>* temp = new node<T>;
         temp->val = val;
-        node* temp2 = head;
+        node<T>* temp2 = head;
         for(int i = 0; i < index - 1; i++){
             temp2 = temp2->next;
         }
@@ -64,7 +64,7 @@ void SingleLinkedList<T>::removeAtHead(){
         cout << "List is empty" << endl;
         return;
     }
-    node* temp = head;
+    node<T>* temp = head;
     head = head->next;
     delete temp;
     size--;
@@ -82,7 +82,7 @@ void SingleLinkedList<T>::removeAtTail(){
         size--;
         return;
     }
-    node* temp = head;
+    node<T>* temp = head;
     while(temp->next->next != nullptr){
         temp = temp->next;
     }
@@ -104,11 +104,11 @@ void SingleLinkedList<T>::removeAt(const int& index){
         removeAtTail();
     }
     else{
-        node* temp = head;
+        node<T>* temp = head;
         for(int i = 0; i < index - 1; i++){
             temp = temp->next;
         }
-        node* temp2 = temp->next;
+        node<T>* temp2 = temp->next;
         temp->next = temp->next->next;
         delete temp2;
         size--;
@@ -121,7 +121,7 @@ void SingleLinkedList<T>::replaceAt(const T& val, const int& index){
         cout << "Index out of range" << endl;
         return;
     }
-    node* temp = head;
+    node<T>* temp = head;
     for(int i = 0; i < index; i++){
         temp = temp->next;
     }
@@ -130,7 +130,7 @@ void SingleLinkedList<T>::replaceAt(const T& val, const int& index){
 
 template<typename T>
 bool SingleLinkedList<T>::isExist(const T& val) const{
-    node* temp = head;
+    node<T>* temp = head;
     while(temp != nullptr){
         if(temp->val == val){
             return true;
@@ -146,7 +146,7 @@ bool SingleLinkedList<T>::isItemAtEqual(const T& val, const int& index) const{
         cout << "Index out of range" << endl;
         return false;
     }
-    node* temp = head;
+    node<T>* temp = head;
     for(int i = 0; i < index; i++){
         temp = temp->next;
     }
@@ -160,11 +160,11 @@ void SingleLinkedList<T>::swapp(const int& index1, const int& index2){
         cout << "index1: " << index1 << " index2: " << index2 << endl;
         return;
     }
-    node* temp1 = head;
+    node<T>* temp1 = head;
     for(int i = 0; i < index1; i++){
         temp1 = temp1->next;
     }
-    node* temp2 = head;
+    node<T>* temp2 = head;
     for(int i = 0; i < index2; i++){
         temp2 = temp2->next;
     }
@@ -181,7 +181,7 @@ void SingleLinkedList<T>::clear(){
 
 template<typename T>
 void SingleLinkedList<T>::print() const{
-    node* temp = head;
+    node<T>* temp = head;
     while(temp != nullptr){
         cout << temp->val << " ";
         temp = temp->next;

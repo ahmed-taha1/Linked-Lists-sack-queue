@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+template<typename T>
 struct node{
-    int val;
+    T val;
     node* next;
     node(){
         val = 0;
@@ -13,7 +14,7 @@ struct node{
 template<typename T>
 class SingleLinkedList{
     private:
-        node* head;
+        node<T>* head;
         int size;
     public:
         SingleLinkedList();
